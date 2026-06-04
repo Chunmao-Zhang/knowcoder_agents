@@ -1,0 +1,24 @@
+__pycache__/
+*.pyc
+*.pyo
+.codeflicker/
+checkpoints/
+runs/
+outputs/
+*.sqlite
+
+# Frontend-generated data
+data/otology_skill/cases/
+data/otology_skill/examples/
+data/otology_skill/sample_cases/
+data/deepagents_kbqa_general/processed/
+data/deepagents_kbqa_general/runtime/
+data/deepagents_kbqa_general/graphs/
+workspaces/otology_skill/outputs/
+workspaces/deepagents_kbqa_general/frontend/data/
+workspaces/deepagents_kbqa_general/embedding_model/
+workspaces/*/memory/
+
+# IDE
+.vscode/
+.idea/

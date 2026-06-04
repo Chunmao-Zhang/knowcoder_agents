@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <title>Code On Graph Agent</title>
+  <link rel="icon" href="/static/assets/knowcoder-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css?v=20260527-home-history-v3">
+</head>
+<body class="light-theme" data-agent-id="deepagents_kbqa_general">
+  <header class="navbar">
+    <div class="navbar-content">
+      <div class="logo" id="brand-home" title="Back to welcome">
+        <img src="/static/assets/knowcoder-logo.svg" alt="Studio logo" class="logo-img">
+        <span class="logo-text-wrap">
+          <span class="logo-text">Code On Graph Agent</span>
+          <span class="logo-subtext">Upload graphs, ask grounded questions</span>
+        </span>
+      </div>
+      <div class="nav-right">
+        <div class="status-chip" id="status-pill"><span class="status-dot"></span><span>Checking runtime</span></div>
+        <div class="model-chip" id="model-chip">Model</div>
+        <button class="icon-btn" id="history-btn" title="View conversations" aria-label="View conversations">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 1a7 7 0 1 0 6.32 4H13.2A6 6 0 1 1 8 2v2.2L11.2 1 8-2.2V1Zm.5 3.5h-1v4l3.2 1.9.5-.86-2.7-1.6V4.5Z"/></svg>
+        </button>
+        <button class="icon-btn" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 12.5A4.5 4.5 0 1 0 8 3.5a4.5 4.5 0 0 0 0 9Zm0 1A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11ZM8 .5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V1A.5.5 0 0 1 8 .5Zm0 13a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5ZM.5 8a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1H1A.5.5 0 0 1 .5 8Zm13 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5Z"/></svg>
+        </button>
+        <button class="nav-new-chat" id="new-chat"><span>New chat</span><strong>⌘N</strong></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="chat-container">
+      <section class="welcome-section" id="hero">
+        <div class="hero-title-row">
+          <div class="hero-graph-icon" aria-label="Graph question answering icon">
+            <span class="hero-node">Q</span>
+            <span class="hero-edge"></span>
+            <span class="hero-node">KG</span>
+            <span class="hero-edge"></span>
+            <span class="hero-node answer">A</span>
+          </div>
+          <h1 class="welcome-title">Code On Graph Agent</h1>
+        </div>
+        <p class="welcome-description">A graph-first coding agent that uploads your knowledge graph, explores nodes and relations, and answers questions by grounding code reasoning in selected graph evidence.</p>
+        <div class="quick-metrics" id="quick-metrics">
+          <div class="metric-card"><span>Skills</span><strong id="skill-count">3 reasoning skills</strong></div>
+          <div class="metric-card"><span>Tools</span><strong id="tool-count">6 graph tools</strong></div>
+        </div>
+        <button class="hero-upload-btn" id="hero-upload-graph" type="button">
+          <span>Upload or manage a graph</span>
+          <small>Open graph management</small>
+        </button>
+      </section>
+
+      <section class="capability-section" id="capability-section" aria-label="Core graph workflow">
+        <button class="capability-card" type="button" data-panel="import">
+          <span class="capability-index">01</span>
+          <strong>Bring your own graph</strong>
+          <p>Upload TXT, JSON, or Excel triples and let the workspace build searchable graph indexes.</p>
+          <small>Open management</small>
+        </button>
+        <button class="capability-card spotlight" type="button" data-panel="schema">
+          <span class="capability-index">02</span>
+          <strong>Inspect the evidence</strong>
+          <p>Browse sample nodes, relations, triples, and the top frequent graph items before asking.</p>
+          <small>Explore graph</small>
+        </button>
+        <button class="capability-card" type="button" data-focus-chat="true">
+          <span class="capability-index">03</span>
+          <strong>Ask with code reasoning</strong>
+          <p>The agent links entities, selects predicates, builds a subgraph, and executes code over evidence.</p>
+          <small>Start asking</small>
+        </button>
+      </section>
+
+      <section id="example-section">
+        <div class="representative-label"><h3>Try A Practical Question</h3></div>
+        <div class="example-questions" id="prompt-grid">
+        <button class="question-card" data-prompt="What are the most connected entities in the current graph, and what relationships make them important?"><strong>Find important entities</strong><p>Rank frequent nodes and explain the relations that connect them.</p></button>
+        <button class="question-card" data-prompt="Using the selected graph, trace a connection chain from a topic entity to a likely answer and show the evidence triples you used."><strong>Trace graph evidence</strong><p>Ask the agent to ground an answer in triples from the active graph scope.</p></button>
+        <button class="question-card" data-prompt="How should I format a TXT, JSON, or Excel file so it can be uploaded as a knowledge graph here?"><strong>Prepare an upload file</strong><p>Get concrete examples for supported subject-relation-object formats.</p></button>
+        </div>
+      </section>
+
+      <section class="chat-messages" id="messages" aria-live="polite"></section>
+    </div>
+  </main>
+
+  <section class="input-section">
+    <div class="input-shell">
+      <div class="run-indicator" id="run-indicator">
+        <span></span>
+        <strong>Agent is working</strong>
+        <em id="run-detail">waiting for events</em>
+        <button id="reset-run" type="button">Reset</button>
+      </div>
+      <div class="graph-scope-bar">
+        <label for="graph-scope-select">Graph scope</label>
+        <select id="graph-scope-select">
+          <option value="">All graphs</option>
+        </select>
+        <span id="graph-scope-hint">Using the complete graph ledger by default</span>
+      </div>
+      <div class="input-container">
+        <textarea class="chat-input" id="message-input" rows="1" placeholder="Ask Code On Graph Agent..." style="border:0;outline:0;box-shadow:none;-webkit-appearance:none;appearance:none;"></textarea>
+        <button class="send-btn" id="send-button" aria-label="Send">
+          <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M1.7 1.05a.5.5 0 0 0-.69.56l1.4 4.84a.5.5 0 0 0 .4.36l5.7.95c.27.04.27.42 0 .46l-5.7.95a.5.5 0 0 0-.4.36L1.01 14.4a.5.5 0 0 0 .7.55l13.98-7a.5.5 0 0 0 0-.9L1.7 1.05Z"/></svg>
+        </button>
+      </div>
+      <div class="ai-disclaimer">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14Zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16Zm.93-9.41-2.29.28-.08.38.45.08c.29.07.35.18.29.47l-.74 3.47c-.2.9.1 1.32.8 1.32.55 0 1.18-.25 1.47-.6l.09-.42c-.2.18-.5.25-.69.25-.27 0-.37-.2-.3-.53l1-4.7ZM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>
+        <span>Enter to send · Shift + Enter for a new line · Sessions save to outputs/deepagents_kbqa_general/frontend_sessions</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="fab-container" id="fab-container">
+    <button class="fab-main" id="fab-main" type="button" title="Open graph workspace actions" aria-label="Open graph workspace actions" aria-controls="fab-schema fab-import" aria-expanded="false">
+      <span class="fab-icon" aria-hidden="true">
+        <svg viewBox="0 0 16 16" width="18" height="18"><path fill="currentColor" d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3Zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3ZM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3Zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3Z"/></svg>
+      </span>
+      <span class="fab-copy">
+        <strong>Graph Workspace</strong>
+        <small>Manage uploads and evidence</small>
+      </span>
+      <span class="fab-caret" aria-hidden="true">⌃</span>
+    </button>
+    <button class="fab-action" id="fab-schema" type="button" title="Open Graph Explorer" aria-label="Open Graph Explorer" aria-hidden="true" tabindex="-1">
+      <span class="fab-action-kicker">View</span>
+      <strong>Graph Explorer</strong>
+      <small>Inspect nodes, relations, and triples</small>
+    </button>
+    <button class="fab-action" id="fab-import" type="button" title="Open Graph Management" aria-label="Open Graph Management" aria-hidden="true" tabindex="-1">
+      <span class="fab-action-kicker">Upload</span>
+      <strong>Graph Management</strong>
+      <small>Add TXT, JSON, or Excel triples</small>
+    </button>
+  </div>
+
+
+
+  <aside class="activities-panel" id="activities-panel">
+    <div class="panel-header">
+      <div class="panel-tabs">
+        <button class="panel-tab active" data-tab="schema" id="schema-tab">Graph Explorer</button>
+        <button class="panel-tab" data-tab="import" id="import-tab">Graph Management</button>
+      </div>
+      <button class="close-panel" id="close-panel" aria-label="Close panel">×</button>
+    </div>
+    <div class="panel-body">
+      <section class="panel-section active" id="schema-content"></section>
+      <section class="panel-section" id="import-content"></section>
+    </div>
+  </aside>
+
+  <div class="history-overlay" id="history-overlay"></div>
+  <section class="history-modal" id="history-modal" aria-modal="true" role="dialog">
+    <div class="modal-header">
+      <div>
+        <span class="modal-eyebrow">Session library</span>
+        <h2>Conversation History</h2>
+        <p>Reopen previous graph investigations or clean up saved chats.</p>
+      </div>
+      <div class="modal-actions">
+        <span class="history-count" id="session-count">0 saved</span>
+        <button class="history-start" id="history-new-chat" type="button">New chat</button>
+      </div>
+      <button class="close-modal" id="close-history" aria-label="Close history">×</button>
+    </div>
+    <div class="history-list" id="session-list"></div>
+  </section>
+
+  <script>
+    window.STUDIO_CONFIG = {
+      agentId: "deepagents_kbqa_general",
+      brand: "Code On Graph Agent",
+      outputHint: "outputs/deepagents_kbqa_general/frontend_sessions"
+    };
+  </script>
+  <script src="/static/app.js?v=20260527-home-history-v3"></script>
+</body>
+</html>

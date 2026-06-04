@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <title>Excel To Ontology Agent</title>
+  <link rel="icon" href="/static/assets/knowcoder-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css?v=20260527-markdown-divider-v1">
+</head>
+<body class="light-theme" data-agent-id="otology_skill">
+  <header class="navbar">
+    <div class="navbar-content">
+      <div class="logo" id="brand-home" title="Back to welcome">
+        <img src="/static/assets/knowcoder-logo.svg" alt="Studio logo" class="logo-img">
+        <span class="logo-text-wrap">
+          <span class="logo-text">Excel To Ontology Agent</span>
+          <span class="logo-subtext">Workbooks to business ontology code</span>
+        </span>
+      </div>
+      <div class="nav-right">
+        <div class="status-chip" id="status-pill"><span class="status-dot"></span><span>Checking runtime</span></div>
+        <div class="model-chip" id="model-chip">Model</div>
+        <button class="icon-btn" id="history-btn" title="View conversations" aria-label="View conversations">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 1a7 7 0 1 0 6.32 4H13.2A6 6 0 1 1 8 2v2.2L11.2 1 8-2.2V1Zm.5 3.5h-1v4l3.2 1.9.5-.86-2.7-1.6V4.5Z"/></svg>
+        </button>
+        <button class="icon-btn" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 12.5A4.5 4.5 0 1 0 8 3.5a4.5 4.5 0 0 0 0 9Zm0 1A5.5 5.5 0 1 1 8 2.5a5.5 5.5 0 0 1 0 11ZM8 .5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V1A.5.5 0 0 1 8 .5Zm0 13a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5ZM.5 8a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1H1A.5.5 0 0 1 .5 8Zm13 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5Z"/></svg>
+        </button>
+        <button class="nav-new-chat" id="new-chat"><span>New chat</span><strong>⌘N</strong></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="chat-container">
+      <section class="welcome-section" id="hero">
+        <div class="hero-title-row">
+          <div class="hero-graph-icon ontology-flow-icon" aria-label="Excel to ontology workflow icon">
+            <span class="hero-node">XLS</span>
+            <span class="hero-edge"></span>
+            <span class="hero-node">PY</span>
+            <span class="hero-edge"></span>
+            <span class="hero-node answer">ONT</span>
+          </div>
+          <h1 class="welcome-title">Excel To Ontology Agent</h1>
+        </div>
+        <p class="welcome-description">A workbook-first ontology agent that reads Excel structures, prepares typed Python models, and turns business questions into validated ontology code.</p>
+        <div class="quick-metrics" id="quick-metrics">
+          <div class="metric-card"><span>Skills</span><strong id="skill-count">3 modeling skills</strong></div>
+          <div class="metric-card"><span>Tools</span><strong id="tool-count">6 ontology tools</strong></div>
+        </div>
+        <button class="hero-upload-btn" id="hero-upload-case" type="button">
+          <span>Start from Excel files</span>
+          <small>Upload and ask on this page</small>
+        </button>
+      </section>
+
+      <section class="case-launchpad" id="case-launchpad" aria-label="Excel upload and ontology questions">
+        <form class="case-launchpad-card" id="main-case-form">
+          <div class="launchpad-head">
+            <div>
+              <span class="launchpad-kicker">Main workflow</span>
+              <h2>Upload workbooks, ask ontology questions, get downloadable schema artifacts.</h2>
+              <p>Prepare one Excel case from multiple files, then send one or many related business questions to the agent in a single grounded run.</p>
+            </div>
+            <div class="launchpad-steps" aria-label="Launch steps">
+              <span><strong>1</strong>Excel files</span>
+              <span><strong>2</strong>Question goals</span>
+              <span><strong>3</strong>Ontology output</span>
+            </div>
+          </div>
+
+          <div class="launchpad-grid">
+            <div class="launchpad-panel file-panel">
+              <div class="launchpad-field">
+                <label class="field-label" for="main-case-files">
+                  <span>Excel workbooks</span>
+                  <small>Supports multiple .xlsx or .xlsm files in one case.</small>
+                </label>
+                <label class="main-file-dropzone" for="main-case-files">
+                  <input id="main-case-files" class="file-picker-input" name="files" type="file" multiple accept=".xlsx,.xlsm,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                  <span class="main-file-icon">XLS</span>
+                  <span class="main-file-copy">
+                    <strong id="main-case-file-name">Choose Excel workbooks</strong>
+                    <small id="main-case-file-hint">No files selected yet. Click here to browse.</small>
+                  </span>
+                  <span id="main-case-file-action" class="main-file-action">Browse</span>
+                </label>
+              </div>
+              <div class="launchpad-inline-grid">
+                <label class="field-label" for="main-case-name">
+                  <span>Case name</span>
+                  <input id="main-case-name" name="case_name" type="text" placeholder="customer retention analysis">
+                </label>
+                <label class="field-label">
+                  <span>Model style</span>
+                  <div class="fixed-model-style" aria-label="Fixed model style">
+                    <strong>Python class</strong>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="launchpad-panel question-panel">
+              <div class="question-panel-topline">
+                <label class="field-label" for="main-case-question">
+                  <span>Business question</span>
+                  <small>Use one question or switch to multi-question schema building.</small>
+                </label>
+                <div class="question-mode-toggle" aria-label="Question input mode">
+                  <button type="button" class="active" data-main-question-mode="single">Single</button>
+                  <button type="button" data-main-question-mode="multi">Multiple</button>
+                </div>
+              </div>
+              <textarea id="main-case-question" rows="4" placeholder="Example: Which customers are at churn risk, and what entities, relationships, interfaces, and operations should the ontology expose?"></textarea>
+              <div class="multi-question-panel hidden" id="main-multi-questions">
+                <div class="main-question-row">
+                  <span>Q1</span>
+                  <textarea class="main-question-input" rows="2" placeholder="Question 1: What ontology entities and relationships are needed?"></textarea>
+                </div>
+                <div class="main-question-row">
+                  <span>Q2</span>
+                  <textarea class="main-question-input" rows="2" placeholder="Question 2: What operations or interfaces should be exposed?"></textarea>
+                </div>
+                <button class="add-question-btn" id="main-add-question" type="button">+ Add another question</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="launchpad-message" id="main-import-message" aria-live="polite"></div>
+          <div class="launchpad-actions">
+            <button class="launchpad-submit primary" type="submit" data-main-action="ask">
+              <span>Prepare case and ask</span>
+              <small>Upload, select, then send the question to chat</small>
+            </button>
+            <button class="launchpad-submit secondary" type="submit" data-main-action="prepare">
+              <span>Only prepare case</span>
+              <small>Select it for later chat</small>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="capability-section" id="capability-section" aria-label="Core ontology workflow">
+        <button class="capability-card" type="button" data-focus-launchpad="true">
+          <span class="capability-index">01</span>
+          <strong>Bring Excel workbooks</strong>
+          <p>Upload one or more workbook files and prepare typed Python models from sheets and fields.</p>
+          <small>Use main workflow</small>
+        </button>
+        <button class="capability-card spotlight" type="button" data-panel="sankey">
+          <span class="capability-index">02</span>
+          <strong>Inspect the data model</strong>
+          <p>Review workbook stats, sheet previews, generated classes, and validation status before asking.</p>
+          <small>Explore case</small>
+        </button>
+        <button class="capability-card" type="button" data-focus-chat="true">
+          <span class="capability-index">03</span>
+          <strong>Generate ontology code</strong>
+          <p>The agent refactors prepared classes into entities, relationships, interfaces, operations, and reports.</p>
+          <small>Start asking</small>
+        </button>
+      </section>
+
+      <section id="example-section">
+        <div class="representative-label"><h3>Try A Practical Ontology Task</h3></div>
+        <div class="example-questions" id="prompt-grid">
+          <button class="question-card" data-prompt="Using the selected Excel case, design a business ontology with core entities, relationships, interfaces, operation methods, and output files under the case business_ontology directory. Finish with a产出总结, 输出文件 download links, 核心关系, and validation results."><strong>Generate ontology</strong><p>Create ontology code, reports, and download links from the selected case.</p></button>
+          <button class="question-card" data-prompt="Inspect the selected Excel case first: summarize workbooks, sheets, key fields, possible relationships, and the business questions this data can support."><strong>Inspect case</strong><p>Understand sheets, fields, semantics, and modeling scope.</p></button>
+          <button class="question-card" data-prompt="Explain the Excel To Ontology workflow: which skills and tools are available, when each one is used, and what files should be produced."><strong>Explain workflow</strong><p>See how Excel, Python models, ontology refactor, merge, and validation fit together.</p></button>
+        </div>
+      </section>
+
+      <section class="chat-messages" id="messages" aria-live="polite"></section>
+    </div>
+  </main>
+
+  <section class="input-section">
+    <div class="input-shell">
+      <div class="run-indicator" id="run-indicator">
+        <span></span>
+        <strong>Agent is working</strong>
+        <em id="run-detail">waiting for events</em>
+        <button id="reset-run" type="button">Reset</button>
+      </div>
+      <div class="case-scope-bar">
+        <label for="case-scope-select">Excel case</label>
+        <select id="case-scope-select">
+          <option value="">No case selected</option>
+        </select>
+        <span id="case-scope-hint">Upload Excel files from Data & Inputs.</span>
+      </div>
+      <div class="input-container">
+        <textarea class="chat-input" id="message-input" rows="1" placeholder="Ask Excel To Ontology Agent..." style="border:0;outline:0;box-shadow:none;-webkit-appearance:none;appearance:none;"></textarea>
+        <button class="send-btn" id="send-button" aria-label="Send">
+          <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M1.7 1.05a.5.5 0 0 0-.69.56l1.4 4.84a.5.5 0 0 0 .4.36l5.7.95c.27.04.27.42 0 .46l-5.7.95a.5.5 0 0 0-.4.36L1.01 14.4a.5.5 0 0 0 .7.55l13.98-7a.5.5 0 0 0 0-.9L1.7 1.05Z"/></svg>
+        </button>
+      </div>
+      <div class="ai-disclaimer">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14Zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16Zm.93-9.41-2.29.28-.08.38.45.08c.29.07.35.18.29.47l-.74 3.47c-.2.9.1 1.32.8 1.32.55 0 1.18-.25 1.47-.6l.09-.42c-.2.18-.5.25-.69.25-.27 0-.37-.2-.3-.53l1-4.7ZM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>
+        <span>Enter to send · Shift + Enter for a new line · Sessions save to outputs/otology_skill/frontend_sessions</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="fab-container" id="fab-container">
+    <button class="fab-main" id="fab-main" type="button" title="Open ontology case actions" aria-label="Open ontology case actions" aria-controls="fab-sankey fab-import" aria-expanded="false">
+      <span class="fab-icon" aria-hidden="true">
+        <svg viewBox="0 0 16 16" width="18" height="18"><path fill="currentColor" d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3Zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3ZM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3Zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3Z"/></svg>
+      </span>
+      <span class="fab-copy">
+        <strong>Ontology Studio</strong>
+        <small>Manage data and trace the run</small>
+      </span>
+      <span class="fab-caret" aria-hidden="true">⌃</span>
+    </button>
+    <button class="fab-action" id="fab-sankey" type="button" title="Open Sankey Map" aria-label="Open Sankey Map" aria-hidden="true" tabindex="-1">
+      <span class="fab-action-kicker">Map</span>
+      <strong>Sankey Map</strong>
+      <small>Open tables and generated code</small>
+    </button>
+    <button class="fab-action" id="fab-import" type="button" title="Open Data and Inputs" aria-label="Open Data and Inputs" aria-hidden="true" tabindex="-1">
+      <span class="fab-action-kicker">Edit</span>
+      <strong>Data & Inputs</strong>
+      <small>Upload Excel and edit user facts</small>
+    </button>
+  </div>
+
+  <aside class="activities-panel" id="activities-panel">
+    <div class="panel-header">
+      <div class="panel-tabs">
+        <button class="panel-tab active" data-tab="sankey" id="sankey-tab">Sankey Map</button>
+        <button class="panel-tab" data-tab="import" id="import-tab">Data & Inputs</button>
+      </div>
+      <button class="close-panel" id="close-panel" aria-label="Close panel">×</button>
+    </div>
+    <div class="panel-body">
+      <section class="panel-section active" id="sankey-content"></section>
+      <section class="panel-section" id="import-content"></section>
+    </div>
+  </aside>
+
+  <div class="history-overlay" id="history-overlay"></div>
+  <section class="history-modal" id="history-modal" aria-modal="true" role="dialog">
+    <div class="modal-header">
+      <div>
+        <span class="modal-eyebrow">Session library</span>
+        <h2>Conversation History</h2>
+        <p>Reopen previous ontology modeling runs or clean up saved chats.</p>
+      </div>
+      <div class="modal-actions">
+        <span class="history-count" id="session-count">0 saved</span>
+        <button class="history-start" id="history-new-chat" type="button">New chat</button>
+      </div>
+      <button class="close-modal" id="close-history" aria-label="Close history">×</button>
+    </div>
+    <div class="history-list" id="session-list"></div>
+  </section>
+
+  <script>
+    window.STUDIO_CONFIG = {
+      agentId: "otology_skill",
+      brand: "Excel To Ontology Agent",
+      outputHint: "outputs/otology_skill/frontend_sessions"
+    };
+  </script>
+  <script src="/static/app.js?v=20260527-unified-ui-v1"></script>
+</body>
+</html>

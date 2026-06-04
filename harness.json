@@ -1,0 +1,109 @@
+{
+  "providers": {
+    "deepseek": {
+      "base_url": "https://api.deepseek.com/v1",
+      "api_key": "sk-...",
+      "models": {
+        "deepseek-v4-flash": {
+          "context_window": 64000,
+          "max_tokens": 8192
+        }
+      }
+    }
+  },
+  "defaults": {
+    "model": "deepseek/deepseek-v4-flash",
+    "temperature": 0.0,
+    "max_steps": 80,
+    "tools": {
+      "allow": [
+        "*"
+      ]
+    },
+    "context": {
+      "keep_turns": 6,
+      "max_input_tokens": 128000,
+      "summary_trigger_fraction": 0.85,
+      "offload_threshold": 20000
+    },
+    "memory": {
+      "auto_load": true,
+      "max_index_lines": 200
+    }
+  },
+  "agents": [
+    {
+      "id": "otology_skill",
+      "name": "Excel To Ontology Agent",
+      "type": "coordinator",
+      "workspace": "workspaces/otology_skill",
+      "skills": [
+        "excel-to-python-class",
+        "business-ontology-refactor",
+        "ontology-merge"
+      ],
+      "tools": {
+        "allow": [
+          "*"
+        ],
+        "deny": [
+          "web_search",
+          "save_memory"
+        ]
+      },
+      "description": "Coordinates Excel-to-class generation, business ontology refactoring, and ontology merge workflows.",
+      "default": true
+    },
+    {
+      "id": "deepagents_kbqa_freebase",
+      "name": "DeepAgents KBQA Freebase",
+      "type": "coordinator",
+      "workspace": "workspaces/deepagents_kbqa_freebase",
+      "prompt": "workspaces/deepagents_kbqa_freebase/prompts/system_prompt.md",
+      "skills": [
+        "single-hop-kbqa-skill",
+        "multi-hop-kbqa-skill",
+        "zero-te-kbqa-skill"
+      ],
+      "tools": {
+        "allow": [
+          "*"
+        ],
+        "deny": [
+          "web_search",
+          "save_memory"
+        ]
+      },
+      "description": "Standalone Freebase-style KBQA agent aligned with /Users/chunmao-zhang/Documents/Code/agent_harness/deepagents_kbqa."
+    },
+    {
+      "id": "deepagents_kbqa_general",
+      "name": "Code On Graph Agent",
+      "type": "coordinator",
+      "workspace": "workspaces/deepagents_kbqa_general",
+      "skills": [
+        "single-hop-kbqa",
+        "multi-hop-kbqa",
+        "zero-te-kbqa"
+      ],
+      "tools": {
+        "allow": [
+          "*"
+        ],
+        "deny": [
+          "web_search",
+          "save_memory"
+        ]
+      },
+      "description": "Coordinates generic file-backed graph KBQA over uploaded TXT, JSON, or Excel triples using entity_name grounding, predicate vector search, subgraph schema construction, and code reasoning."
+    }
+  ],
+  "sft": {
+    "enabled": true,
+    "output_dir": "runs",
+    "format": "openai_messages",
+    "include_tool_calls": true
+  },
+  "checkpoints_dir": "checkpoints",
+  "runs_dir": "runs"
+}
