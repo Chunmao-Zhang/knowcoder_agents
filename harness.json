@@ -2,7 +2,7 @@
   "providers": {
     "deepseek": {
       "base_url": "https://api.deepseek.com/v1",
-      "api_key": "sk-...",
+      "api_key": "sk-...(https://platform.deepseek.com/)",
       "models": {
         "deepseek-v4-flash": {
           "context_window": 64000,
@@ -74,7 +74,7 @@
           "save_memory"
         ]
       },
-      "description": "Standalone Freebase-style KBQA agent aligned with /Users/chunmao-zhang/Documents/Code/agent_harness/deepagents_kbqa."
+      "description": "Standalone Freebase-style KBQA agent."
     },
     {
       "id": "deepagents_kbqa_general",
